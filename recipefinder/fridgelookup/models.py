@@ -20,7 +20,9 @@ class Fridge(models.Model):
         #create empty list
         #iterate through Recipe.objects.all()
         for r in Recipe.objects.all():
-            if len(r.ingredient_set) == len((r.ingredient_set).intersection(self.ingredient_set)):
+            print(r.ingredient_set)
+            #if len(r.ingredient_set) == len((r.ingredient_set).intersection(self.ingredient_set)):
+            if len(r.ingredient_set.all()) == len((r.ingredient_set.all()).intersection(self.ingredient_set.all())):
                 rv.append(r.recipe_URL)
         #within each iteration, check if the intersection of recipe's ingredients and fridge's ingredients are of equal size. if so, add to initial list.
         #return list.
