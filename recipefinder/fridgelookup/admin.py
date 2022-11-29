@@ -1,3 +1,16 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Recipe, Fridge, Ingredient
+
+class IngredientInline(admin.TabularInline):
+    model = Ingredient
+    extras = 1
+
+class FridgeAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['fridge_name']})
+    ]
+    inlines = [IngredientInline]
+admin.site.register(Fridge, FridgeAdmin)
+admin.site.register(Recipe)
+admin.site.register(Ingredient)
