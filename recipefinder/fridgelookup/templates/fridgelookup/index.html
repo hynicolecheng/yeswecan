@@ -1,0 +1,9 @@
+{% if fridge_list %}
+    <ul>
+    {% for fridge in fridge_list %}
+        <li><a href="{% url 'fridgelookup:detail' fridge.id %}">{{ fridge.fridge_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No fridges are available.</p>
+{% endif %}
