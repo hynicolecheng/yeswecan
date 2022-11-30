@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.template import loader
 from django import forms
+from .forms import IngredientForm
 from .models import Fridge, Ingredient, Recipe
 # Create your views here.
 
@@ -26,8 +27,13 @@ def details(request, fridge_id):#shows fridge contents
 
 def update(request, fridge_id):
     response = "You're updating fridge %s."
-
-    
-
-
-    return HttpResponse(response % fridge_id)
+    #form = IngredientForm(initial={'fridge': Fridge.objects.get(pk=fridge_id)})
+    form = IngredientForm(request.POST)
+    if form.is_valid():
+        new_ingredient = form.save(commit=False)
+        new_ingredient.fridge = Fridge.objects.get(pk=fridge_id)
+        new_ingredient.save()
+        form.save_m2m()
+        
+    #return HttpResponse(response % fridge_id)
+    return render(request, 'fridgelookup/update.html', {'fridge': Fridge.objects.get(pk=fridge_id)})

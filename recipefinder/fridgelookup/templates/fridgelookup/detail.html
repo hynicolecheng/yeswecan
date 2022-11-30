@@ -14,11 +14,9 @@
     <fieldset>
         <legend><h1>{{ fridge.fridge_name }}</h1></legend>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        #{% for choice in question.choice_set.all %}
-        #    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        #    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-        #{% endfor %}
+        
+        <input type="text" />
         
     </fieldset>
-    <input type="submit" value="Update">
+    <input type="submit" value="Add Ingredient">
     </form>
