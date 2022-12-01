@@ -1,22 +1,17 @@
-<h1>{{ fridge.fridge_name }}</h1>
-<ul>
-{% for ing in fridge.ingredients %}
-    <li>{{ ing.ing_name }}</li>
-{% endfor %}
-</ul>
-
-
-
-
-
 <form action="{% url 'fridgelookup:update' fridge.id %}" method="post">
     {% csrf_token %}
-    <fieldset>
-        <legend><h1>{{ fridge.fridge_name }}</h1></legend>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        
-        <input type="text" />
-        
-    </fieldset>
+    <ul>
+        {{ form.as_ul }} 
+    </ul>
     <input type="submit" value="Add Ingredient">
-    </form>
+</form>
+
+{% if ingredients %}
+    <ul>
+    {% for i in ingredients %}
+        <li>{{ i }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No ingredients are available.</p>
+{% endif %}

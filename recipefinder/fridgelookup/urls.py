@@ -10,5 +10,5 @@ urlpatterns = [
     # ex: /fridgelookup/5/update/
     path('<int:fridge_id>/update/', views.update, name='update'),
     # ex: /fridgelookup/5/details/
-    path('<int:fridge_id>/details/', views.details, name='details')
+    path('<int:fridge_id>/', views.detail, name='detail')
 ]

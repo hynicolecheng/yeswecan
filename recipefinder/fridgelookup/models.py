@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.forms import JSONField
 # Create your models here.
 class Recipe(models.Model):
     def __str__(self):
@@ -8,7 +8,7 @@ class Recipe(models.Model):
     recipe_URL = models.CharField(max_length=400)
 
 
-    ingredients = set() #ingredients.add("egg"), or ingredients.update("egg") works
+    ingredients = models.JSONField()
 
 
     #recipe_ingredient_list = QuerySet()
@@ -17,8 +17,10 @@ class Recipe(models.Model):
 class Fridge(models.Model):
     def __str__(self):
         return self.fridge_name
-    
-    ingredients = set() #ingredients.add("egg"), or ingredients.update("egg") works
+
+    staged_ingr = models.CharField(max_length=200)
+    staged_amt = models.IntegerField()
+    ingredients = models.JSONField() #ingredients[key]=value to set, ingredients[pop] to get
 
    #fridge_ingredient_list = QuerySet()
     fridge_name = models.CharField(max_length=200)
@@ -26,7 +28,7 @@ class Fridge(models.Model):
     def get_available_recipes(self):
         rv = []
         for r in Recipe.objects.all():
-            if len(r.ingredients) == len((r.ingredients).intersection(self.ingredients)):
+            if len(r.ingredients.keys()) == len((r.ingredients.keys()).intersection(self.ingredients.keys())):
                 rv.append(r.recipe_URL)
 
         return rv
