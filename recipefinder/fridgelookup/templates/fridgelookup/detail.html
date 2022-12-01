@@ -1,6 +1,6 @@
 <h1>{{ fridge.fridge_name }}</h1>
 <ul>
-{% for ing in fridge.ingredient_set.all %}
+{% for ing in fridge.ingredients %}
     <li>{{ ing.ing_name }}</li>
 {% endfor %}
 </ul>
