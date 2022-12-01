@@ -5,10 +5,11 @@ class Recipe(models.Model):
     def __str__(self):
         return self.recipe_name
     recipe_name = models.CharField(max_length=200)
+    ingredients = models.JSONField()
     recipe_URL = models.CharField(max_length=400)
 
 
-    ingredients = models.JSONField()
+   
 
 
     #recipe_ingredient_list = QuerySet()
