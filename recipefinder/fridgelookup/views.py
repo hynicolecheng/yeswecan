@@ -18,17 +18,32 @@ def index(request): #add fridge button, a list of fridges
     return render(request, 'fridgelookup/index.html', context)
 
 def results(request, fridge_id): #will show the results (available recipes' urls) for given fridge
-    response = "You're looking at the results of fridge %s."
-    return HttpResponse(response % fridge_id)
+    
+    if request.method=="GET":
+
+        fridge = get_object_or_404(Fridge, pk=fridge_id)
+        recipe_list = fridge.get_available_recipes()
+
+        context = {
+        "fridge_name": fridge.fridge_name,
+        'recipe_list': recipe_list
+        }
+
+        return render(request, 'fridgelookup/results.html', context)
+    return
 
 def detail(request, fridge_id):#shows fridge contents
     fridge = get_object_or_404(Fridge, pk=fridge_id)
     fridge = Fridge.objects.get(pk=1)
     fridge.save()
+    form = FridgeForm2(instance=fridge)
     context = {
         'fridge': fridge,
-        'ingredients': fridge.ingredients.keys()
+        'ingredients': fridge.ingredients.keys(),
+        'form': form
     }
+    print("got to 38")
+    form = FridgeForm2(instance=fridge)
     return render(request, 'fridgelookup/detail.html', context)
 
 def update(request, fridge_id):
@@ -58,8 +73,7 @@ def update(request, fridge_id):
         #new_ingredient.fridge = Fridge.objects.get(pk=fridge_id)
         #new_ingredient.save()
         #form.save_m2m()
-    else:
-        form = FridgeForm2(request.POST, instance=fridge)
+    
 
     return render(request, 'fridgelookup/detail.html', {'form': form, 'fridge': fridge})    
     #return HttpResponse(response % fridge_id)
