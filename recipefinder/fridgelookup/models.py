@@ -11,12 +11,12 @@ class Recipe(models.Model):
     recipe_URL = models.CharField(max_length=400)
 
     def update_recipes():
-        with open('../webscraped_data/Recipes_1000.csv') as csv_file:
+        with open('../webscraped_data/Recipes_1000.csv', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file)
 
             for row in reader:
                 name = row[0]
-                p = re.findall(r"(?: \')(.*?)(?: \')",row[1])
+                p = re.findall(r"'(.*?)'",row[1])
                 ingr = {ing: 47 for ing in p}
                 url = row[2]
                 Recipe.objects.create(recipe_name=name, ingredients=ingr, recipe_URL=url)
