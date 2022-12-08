@@ -1,0 +1,39 @@
+p {
+    font-family: Verdana, sans-serif;
+    font-size: 30px;
+    color: black;
+    padding: 20px;
+    font-weight: bold;
+}
+
+ul {
+    color: white;
+    font-size: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+li a {
+    color: red;
+    font-size: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 250px;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+}
+
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    padding: 30px;
+}
+
+body {
+    background: white url("images/background.png") no-repeat;
+    background-size: cover;
+}

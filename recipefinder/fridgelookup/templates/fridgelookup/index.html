@@ -1,3 +1,11 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'fridgelookup/style.css' %}">
+
+<h1>RECIPE FIND</h1>
+
+<h2> Select your fridge below: </h2>
+
 {% if fridge_list %}
     <ul>
     {% for fridge in fridge_list %}

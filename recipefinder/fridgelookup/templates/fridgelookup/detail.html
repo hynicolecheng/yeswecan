@@ -1,12 +1,10 @@
-<form action="{% url 'fridgelookup:update' fridge.id %}" method="post">
-    {% csrf_token %}
-    <ul>
-        {{ form.as_ul }} 
-    </ul>
-    <input type="submit" value="Add Ingredient">
-</form>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'fridgelookup/style.css' %}">
+
 
 {% if ingredients %}
+    <p>Here are the ingredients in your fridge:</p>
     <ul>
     {% for i in ingredients %}
         <li>{{ i }}</li>
@@ -15,6 +13,16 @@
 {% else %}
     <p>No ingredients are available.</p>
 {% endif %}
+
+<p>Update your fridge ingredients: </p>
+<form action="{% url 'fridgelookup:update' fridge.id %}" method="post">
+    {% csrf_token %}
+    <ul>
+        {{ form.as_ul }} 
+    </ul>
+    <input type="submit" value="Add Ingredient">
+</form>
+
 
 <!--<li><a href="/fridgelookup/{{ fridge.id }}/results">results</a></li> 
 <li><a href="{% url 'fridgelookup:results' fridge.id %}"></a>results</li>-->
